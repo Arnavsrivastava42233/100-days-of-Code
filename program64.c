@@ -2,29 +2,32 @@
 #include<stdio.h>
 int main()
 {
-int i,j,n,frequency=1,temp=0,value;
- printf("Enter size of array:");
- scanf("%d",&n);
- int arr[n];
- printf("Enter values of array\n");
- for(i=0;i<n;i++)
- {
-  scanf("%d",&arr[i]);
- }
-  for(i=0;i<n;i++)
-  {
-	  temp=1;
-   for(j=i+1;j<n;j++)
-   {
-    if(arr[i]==arr[j])
-	temp=temp+1;
-   }
-   if(frequency<temp)
-   {
-    frequency=temp;
-	value=arr[i];
-   }
-  }
-  printf("Digit %d has greatest frequency of %d\n",value,frequency);
-  return 0;
+	 int n, digit, maxCount=0, maxDigit=0;
+    int count[10]={0}; 
+
+    printf("Enter an integer: ");
+    scanf("%d",&n);
+
+    if(n==0)
+        count[0]++;
+
+    while(n!=0)
+    {
+        digit = n%10;
+        count[digit]++;
+        n = n/10;
+    }
+
+    for(int i=0; i<10; i++)
+    {
+        if(count[i] > maxCount)
+        {
+            maxCount = count[i];
+            maxDigit = i;
+        }
+    }
+
+    printf("The digit that occurs most frequently is %d, and it occurs %d times.\n", maxDigit, maxCount);
+
+    return 0;
 }
