@@ -1,0 +1,27 @@
+//Find the sum of each row of a matrix and store it in an array.
+#include<stdio.h>
+int main()
+{
+ int n,i,j,m,Sum=0;
+ printf("Enter number of rows and coloumn of array:");
+ scanf("%d%d",&n,&m);
+ int arr[n][m];
+ printf("Enter the values in array\n");
+ for(i=0;i<n;i++)
+ {
+  for(j=0;j<m;j++)
+  {
+  scanf("%d",&arr[i][j]);
+  }
+ }
+ for(i=0;i<n;i++)
+ {
+  for(j=0;j<m;j++)
+  {
+  Sum=Sum+arr[j][i];
+  }
+  printf("Sum of %d row is=%d\n",i,Sum);
+  Sum=0;
+ }
+ return 0;
+}
