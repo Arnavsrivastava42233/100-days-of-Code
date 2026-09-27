@@ -1,51 +1,49 @@
 //Reverse each word in a sentence without changing the word order.
-#include <stdio.h>
-#include <string.h>
-
-// Helper function to reverse a segment of a string in-place
-void reverseWord(char* str, int start, int end) 
+#include<stdio.h>
+#include<string.h>
+int main()
 {
-    char temp;
-    while (start < end) 
+ char  str[200],wd[100]="",newstr[200];
+ printf("Enter the sentence:");
+ scanf("%[^\n]", str);
+ int len= strlen(str);
+ int k=0,m=0,i=0,j;
+ while (i <= len)
     {
-        temp = str[start];
-        str[start] = str[end];
-        str[end] = temp;
-        start++;
-        end--;
-    }
-}
-
-int main() 
-{
-    char sentence[200];
-
-    printf("Enter a sentence: ");
-    // Safely read a line of text, preventing buffer overflow
-    if (fgets(sentence, sizeof(sentence), stdin) != NULL) 
-    {
-        // Remove trailing newline character added by fgets
-        sentence[strcspn(sentence, "\n")] = '\0';
-    }
-
-    int len = strlen(sentence);
-    int wordStart = 0;
-
-    for (int i = 0; i <= len; i++) 
-    {
-        // A word ends when we hit a space or the end of the string
-        if (sentence[i] == ' ' || sentence[i] == '\0') 
+        if (str[i] != ' ' && str[i] != '\0')
         {
-            // Reverse the current word (from wordStart to i - 1)
-            reverseWord(sentence, wordStart, i - 1);
-            
-            // The next word will start after the space
-            wordStart = i + 1;
+            wd[k] = str[i];
+            k++;
+            i++;
+        }
+        else
+        {
+            wd[k] = '\0';
+
+            for (j = k - 1; j >= 0; j--)
+            {
+                newstr[m++] = wd[j];
+            }
+
+            if (str[i] == ' ')
+            {
+                newstr[m++] = ' ';
+                i++;
+            }
+            else
+            {
+                i++; 
+            }
+
+            k = 0;
         }
     }
 
-    // Output the resulting sentence
-    printf("Result: %s\n", sentence);
+    newstr[m] = '\0';
 
+    printf("Reversed string is: %s\n", newstr);
     return 0;
 }
+
+
+
